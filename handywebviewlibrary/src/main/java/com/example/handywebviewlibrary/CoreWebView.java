@@ -5,8 +5,11 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.webkit.CookieManager;
+import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 /**
  * Created by zhanghziqiagn on 2017/5/4.
@@ -15,6 +18,7 @@ import android.webkit.WebView;
 public class CoreWebView extends WebView {
 
     private static final String TAG = CoreWebView.class.getSimpleName();
+    private WebChromeClient userWebChromeClient;
 
     public CoreWebView(Context context) {
         super(context);
@@ -44,6 +48,15 @@ public class CoreWebView extends WebView {
         settings.setUseWideViewPort(true);  //将图片调整到适合webview的大小
         settings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
 
+
+        setWebViewClient(webViewClient);
+        setWebChromeClient(webChromeClient);
+
+        //解决在5.0以上不显示htts图片的问题
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
+
         // cookie 相关
         CookieManager.getInstance().setAcceptCookie(true);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -52,5 +65,17 @@ public class CoreWebView extends WebView {
 
     }
 
+    private final WebViewClient webViewClient = new WebViewClient() {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+            return super.shouldOverrideUrlLoading(view, request);
+        }
+    };
+
+
+    private final WebChromeClient webChromeClient = new WebChromeClient() {
+
+
+    };
 
 }
