@@ -44,6 +44,8 @@ public class CoreWebView extends WebView {
         WebSettings settings = getSettings();
         //添加JavaScript支持
         settings.setJavaScriptEnabled(true);
+        //临时、简单数据的缓存，cookie的拓展
+        settings.setDomStorageEnabled(true);
         //设置自适应屏幕，两者合用
         settings.setUseWideViewPort(true);  //将图片调整到适合webview的大小
         settings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
@@ -55,6 +57,11 @@ public class CoreWebView extends WebView {
         //解决在5.0以上不显示htts图片的问题
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             settings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        }
+
+        //解决3.0到4.2期间webview的挂马风险，4.2以上Google已修复
+        if (Build.VERSION_CODES.JELLY_BEAN_MR1 > Build.VERSION.SDK_INT && Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            removeJavascriptInterface("searchBoxJavaBridge_");
         }
 
         // cookie 相关
