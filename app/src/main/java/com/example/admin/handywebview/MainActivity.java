@@ -6,7 +6,7 @@ import android.os.Bundle;
 import com.example.handywebviewlibrary.CoreWebView;
 
 public class MainActivity extends AppCompatActivity {
-    private final String url = "https://huayiquan.com.cn/index.php?s=/home/answers/details2/user_mobile/15142555427/cate/0/pid/26/mobile/15811043857.html";
+    private final String url = "https://huayiquan.com.cn/index.php?s=/home/article/content2/user_mobile/15142555427/aid/858/mobile/17774934497.html";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
