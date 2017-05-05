@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.admin.handywebview.MainActivity">
 
-    <com.example.handywebviewlibrary.CoreWebView
+    <com.example.handywebviewlibrary.ProgressWebView
         android:id="@+id/core_web_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
