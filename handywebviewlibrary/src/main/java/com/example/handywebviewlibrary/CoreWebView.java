@@ -64,13 +64,14 @@ public class CoreWebView extends WebView {
             removeJavascriptInterface("searchBoxJavaBridge_");
         }
 
-        // cookie 相关
+        // 5.0以上同步cookie的操作已经可以自动同步、但前提是我们必须开启第三方cookie的支持。
         CookieManager.getInstance().setAcceptCookie(true);
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             CookieManager.getInstance().setAcceptThirdPartyCookies(this, true);
         }
 
     }
+
 
     private final WebViewClient webViewClient = new WebViewClient() {
         @Override
