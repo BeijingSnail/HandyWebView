@@ -1,8 +1,7 @@
 package com.example.handywebviewlibrary;
 
 import android.annotation.TargetApi;
-import android.graphics.Bitmap;
-import android.util.Log;
+import android.support.annotation.LayoutRes;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebResourceError;
@@ -17,14 +16,16 @@ import android.webkit.WebViewClient;
 public class CoreWebViewClient extends WebViewClient {
 
     private boolean isError = false;
+
     private View mErrorView;
+
+    private int errorLayout;
 
     @SuppressWarnings("deprecation")
     @Override
     public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
         super.onReceivedError(view, errorCode, description, failingUrl);
-
-
+        showErrorPage(view);
     }
 
     @TargetApi(android.os.Build.VERSION_CODES.M)
@@ -35,12 +36,12 @@ public class CoreWebViewClient extends WebViewClient {
 
     }
 
-    @Override
-    public void onPageStarted(WebView view, String url, Bitmap favicon) {
-        super.onPageStarted(view, url, favicon);
-        Log.d("zzq", "onPageStarted");
+    /**
+     * @param errorLayout 可以自定义一个用来展示的错误页面
+     */
+    protected void setErrorViewLayout(@LayoutRes int errorLayout) {
+        this.errorLayout = errorLayout;
     }
-
 
     /**
      * 显示自定义错误提示页面，用一个View覆盖在WebView
@@ -61,6 +62,7 @@ public class CoreWebViewClient extends WebViewClient {
     }
 
     protected void hideErrorPage(WebView webView) {
+
         ViewGroup webParentView = (ViewGroup) webView.getParent();
 
         isError = false;
@@ -71,16 +73,29 @@ public class CoreWebViewClient extends WebViewClient {
 
 
     protected void initErrorPage(final WebView webView) {
-//        if (mErrorView == null) {
-//            mErrorView = View.inflate(this, R.layout.online_error, null);
-//            Button button = (Button) mErrorView.findViewById(R.id.online_error_btn_retry);
-//            button.setOnClickListener(new View.OnClickListener() {
-//                public void onClick(View v) {
-//                    webView.reload();
-//                }
-//            });
-//            mErrorView.setOnClickListener(null);
-//        }
+        if (errorLayout == 0) {
+            mErrorView = View.inflate(webView.getContext(), R.layout.error_layout, null);
+        } else {
+            mErrorView = View.inflate(webView.getContext(), errorLayout, null);
+        }
+
+        try {
+            View reloadView = mErrorView.findViewById(R.id.reload);
+            reloadView.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    webView.reload();
+                }
+            });
+            mErrorView.setOnClickListener(null);
+
+        } catch (Exception e) {
+            throw new RuntimeException("click view id is not 'reload'");
+        }
     }
 
+    @Override
+    public void onPageFinished(WebView view, String url) {
+        super.onPageFinished(view, url);
+        hideErrorPage(view);
+    }
 }
