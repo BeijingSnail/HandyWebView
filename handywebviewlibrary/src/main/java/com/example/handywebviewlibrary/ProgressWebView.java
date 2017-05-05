@@ -6,7 +6,6 @@ import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
 
@@ -47,7 +46,7 @@ public class ProgressWebView extends CoreWebView {
 
     }
 
-    class MyWebChromClient extends WebChromeClient {
+    class MyWebChromClient extends CoreChromeClient {
         @Override
         public void onProgressChanged(WebView view, int newProgress) {
             super.onProgressChanged(view, newProgress);
@@ -60,6 +59,7 @@ public class ProgressWebView extends CoreWebView {
                 progressBar.setProgress(newProgress);
             }
         }
+
     }
 
 
