@@ -49,7 +49,11 @@ public class CoreWebView extends WebView {
         settings.setUseWideViewPort(true);  //将图片调整到适合webview的大小
         settings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
 
-        setWebViewClient(new CoreWebViewClient());
+        settings.setNeedInitialFocus(true); //当webview调用requestFocus时为webview设置节点
+        settings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
+        settings.setDefaultTextEncodingName("utf-8");//设置编码格式
+
+//        setWebViewClient(new CoreWebViewClient());
         setWebChromeClient(new CoreChromeClient());
 
         //解决在5.0以上不显示htts图片的问题
@@ -78,9 +82,7 @@ public class CoreWebView extends WebView {
 //        });
 
 
-
     }
-
 
 
 }
