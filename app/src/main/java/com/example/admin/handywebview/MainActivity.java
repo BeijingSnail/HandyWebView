@@ -3,6 +3,7 @@ package com.example.admin.handywebview;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.handywebviewlibrary.CoreWebViewClient;
 import com.example.handywebviewlibrary.ProgressWebView;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ProgressWebView coreWebView = (ProgressWebView) findViewById(R.id.core_web_view);
+        coreWebView.setWebViewClient(new CoreWebViewClient());
 
         coreWebView.loadUrl(errorUrl);
 

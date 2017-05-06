@@ -3,7 +3,7 @@
     android:id="@+id/error_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@android:color/holo_blue_dark"
     android:gravity="center"
     android:orientation="horizontal">
 
@@ -12,5 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="18dp"
+        android:textColor="@android:color/black"
         android:text="加载失败，点击重新加载" />
 </LinearLayout>
