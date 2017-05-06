@@ -12,7 +12,6 @@ import android.webkit.WebViewClient;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static com.example.handywebviewlibrary.R.id.reload;
 
 /**
  * Created by zhangzhiqiang on 2017/5/5.
@@ -50,7 +49,6 @@ public class CoreWebViewClient extends WebViewClient {
      */
 
     public void showErrorPage(final WebView webView) {
-
         if (errorViewStub == null) {
             errorViewStub = new ViewStub(webView.getContext());
             errorViewStub.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -58,7 +56,7 @@ public class CoreWebViewClient extends WebViewClient {
             errorViewStub.setClickable(true);
             webView.addView(errorViewStub);
             View view = errorViewStub.inflate();
-            view.findViewById(reload).setOnClickListener(new View.OnClickListener() {
+            view.findViewById(R.id.reload).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     webView.reload();
@@ -76,5 +74,6 @@ public class CoreWebViewClient extends WebViewClient {
         if (!isError && errorViewStub != null)
             errorViewStub.setVisibility(GONE);
     }
+
 
 }
