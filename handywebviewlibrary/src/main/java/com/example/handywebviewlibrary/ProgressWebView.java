@@ -43,9 +43,7 @@ public class ProgressWebView extends CoreWebView {
         progressBar.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 10, 0, 0));
         setWebChromeClient(new MyWebChromClient());
         addView(progressBar);
-
     }
-
 
     class MyWebChromClient extends CoreChromeClient {
         @Override
@@ -53,6 +51,7 @@ public class ProgressWebView extends CoreWebView {
             super.onProgressChanged(view, newProgress);
             if (newProgress == 100) {
                 progressBar.setVisibility(View.GONE);
+
             } else {
                 if (progressBar.getVisibility() == GONE) {
                     progressBar.setVisibility(View.VISIBLE);
@@ -60,8 +59,6 @@ public class ProgressWebView extends CoreWebView {
                 progressBar.setProgress(newProgress);
             }
         }
-
     }
-
 
 }

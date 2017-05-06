@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         ProgressWebView coreWebView = (ProgressWebView) findViewById(R.id.core_web_view);
         coreWebView.setWebViewClient(new CoreWebViewClient());
 
-        coreWebView.loadUrl(errorUrl);
+        coreWebView.loadUrl(url);
 
     }
 }
