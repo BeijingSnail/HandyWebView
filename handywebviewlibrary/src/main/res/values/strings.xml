@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HandyWebViewLibrary</string>
+    <string name="load_error">数据加载失败\n请稍后重试，或点击重新加载</string>
 </resources>
