@@ -28,5 +28,5 @@
 
 ###### 替换后的效果图
 
-![Image text](https://github.com/BeijingSnail/HeaderCarousel/blob/master/HeaderCarousel/images/ImageBanner.png)
+![Image text](https://github.com/BeijingSnail/HandyWebView/blob/master/images/custom.png)
 
