@@ -3,15 +3,22 @@
     android:id="@+id/error_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_dark"
+    android:background="#e6e6e6"
     android:gravity="center"
-    android:orientation="horizontal">
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/icon" />
 
     <TextView
         android:id="@+id/reload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="18dp"
-        android:textColor="@android:color/black"
-        android:text="加载失败，点击重新加载" />
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:lineSpacingExtra="3dp"
+        android:text="@string/load_error"
+        android:textColor="@android:color/black" />
 </LinearLayout>
