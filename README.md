@@ -24,7 +24,7 @@
 ```
 ###### 系统默认的错误页面
 
-![Image text](https://github.com/BeijingSnail/HeaderCarousel/blob/master/HeaderCarousel/images/ImageBanner.png)
+![Image text](https://github.com/BeijingSnail/HandyWebView/blob/master/images/systemComes.png)
 
 ###### 替换后的效果图
 
