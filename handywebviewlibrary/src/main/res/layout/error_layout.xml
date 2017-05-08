@@ -21,4 +21,5 @@
         android:lineSpacingExtra="3dp"
         android:text="@string/load_error"
         android:textColor="@android:color/black" />
+
 </LinearLayout>

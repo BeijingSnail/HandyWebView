@@ -2,13 +2,15 @@ package com.example.admin.handywebview;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.example.handywebviewlibrary.CoreWebViewClient;
 import com.example.handywebviewlibrary.ProgressWebView;
 
 public class MainActivity extends AppCompatActivity {
-    private final String url = "https://huayiquan.com.cn/index.php?s=/home/article/content2/user_mobile/15142555427/aid/858/mobile/17774934497.html";
-    private final String errorUrl = "https://code.google.com/p/android/issues/detail?id=968";
+    private final String url = "https://www.baidu.com";
+    private final String errorUrl = "https://www.sdd.com/search/";
+//    private final String errorUrl = "https://code.google.com/p/android/issues/detail?id=968";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,10 +18,22 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        ProgressWebView coreWebView = (ProgressWebView) findViewById(R.id.core_web_view);
+        final ProgressWebView coreWebView = (ProgressWebView) findViewById(R.id.core_web_view);
         coreWebView.setWebViewClient(new CoreWebViewClient());
 
-        coreWebView.loadUrl(url);
+        findViewById(R.id.load_normal_page).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                coreWebView.loadUrl(url);
+            }
+        });
+
+        findViewById(R.id.load_error_page).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                coreWebView.loadUrl(errorUrl);
+            }
+        });
 
     }
 }

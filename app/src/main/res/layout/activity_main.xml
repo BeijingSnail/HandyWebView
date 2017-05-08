@@ -6,9 +6,33 @@
     android:layout_height="match_parent"
     tools:context="com.example.admin.handywebview.MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <Button
+            android:id="@+id/load_normal_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="加载正常页面" />
+
+        <Button
+            android:id="@+id/load_error_page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="加载错误页面" />
+
+    </RelativeLayout>
+
     <com.example.handywebviewlibrary.ProgressWebView
         android:id="@+id/core_web_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/linear_layout" />
 
 </RelativeLayout>
