@@ -40,6 +40,8 @@ dependencies {
 	        compile 'com.github.BeijingSnail:HandyWebView:v1.0'
 	}
 ```
+3 记得添加网络权限...
+
 ##### 系统默认的错误页面
 
 ![Image text](https://github.com/BeijingSnail/HandyWebView/blob/master/images/systemComes.png)
