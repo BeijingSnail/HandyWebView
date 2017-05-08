@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -47,22 +46,28 @@ public class CoreWebViewClient extends WebViewClient {
     public void showErrorPage(final WebView webView) {
         if (errorViewStub == null) {
             errorViewStub = new ViewStub(webView.getContext());
+
+//            errorViewStub.setLayoutParams(new ViewGroup.LayoutParams(500, 500));
             errorViewStub.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             errorViewStub.setLayoutResource(errorLayout);
+
             errorViewStub.setClickable(true);
+//            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(errorViewStub.getLayoutParams());
+//            lp.setMargins(50, 50,50, 50);
+
             webView.addView(errorViewStub);
             View view = errorViewStub.inflate();
             view.findViewById(R.id.reload).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     webView.reload();
+
                 }
             });
 
         } else {
             errorViewStub.setVisibility(VISIBLE);
         }
-
         isError = true;
     }
 
@@ -84,9 +89,5 @@ public class CoreWebViewClient extends WebViewClient {
         lastStatus = isError;
     }
 
-    @Override
-    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-        return false;
-    }
-    
+
 }
