@@ -41,7 +41,9 @@ dependencies {
 	}
 ```
 3 记得添加网络权限...
-
+```
+<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+```
 ##### 系统默认的错误页面
 
 ![Image text](https://github.com/BeijingSnail/HandyWebView/blob/master/images/systemComes.png)
