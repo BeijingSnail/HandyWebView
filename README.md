@@ -22,6 +22,24 @@
  CoreWebViewClient.setErrorViewLayout(@LayoutRes int errorLayout)
  
 ```
+
+#### 可在项目中添加依赖
+1 Add it in your root build.gradle at the end of repositories:
+```
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+
+2 Add the dependency
+```
+dependencies {
+	        compile 'com.github.BeijingSnail:HandyWebView:v1.0'
+	}
+```
 ##### 系统默认的错误页面
 
 ![Image text](https://github.com/BeijingSnail/HandyWebView/blob/master/images/systemComes.png)
