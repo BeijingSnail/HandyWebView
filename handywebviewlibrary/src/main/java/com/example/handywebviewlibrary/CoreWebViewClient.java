@@ -1,11 +1,11 @@
 package com.example.handywebviewlibrary;
 
-import android.annotation.TargetApi;
+import android.graphics.Bitmap;
 import android.support.annotation.LayoutRes;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
-import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -20,6 +20,7 @@ import static android.view.View.VISIBLE;
 public class CoreWebViewClient extends WebViewClient {
 
     private boolean isError = false;
+    private boolean lastStatus = false;
     private ViewStub errorViewStub;
     private int errorLayout = R.layout.error_layout;
 
@@ -27,14 +28,9 @@ public class CoreWebViewClient extends WebViewClient {
     @Override
     public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
         super.onReceivedError(view, errorCode, description, failingUrl);
+        Log.d("zzq", "CoreWebViewClient===>onReceivedError");
+        Log.d("zzq", "errorCode===>" + errorCode);
         showErrorPage(view);
-    }
-
-    @TargetApi(android.os.Build.VERSION_CODES.M)
-    @Override
-    public void onReceivedError(WebView view, WebResourceRequest req, WebResourceError rerr) {
-        // Redirect to deprecated method, so you can use it in all SDK versions
-        onReceivedError(view, rerr.getErrorCode(), rerr.getDescription().toString(), req.getUrl().toString());
     }
 
     /**
@@ -62,18 +58,35 @@ public class CoreWebViewClient extends WebViewClient {
                     webView.reload();
                 }
             });
+
         } else {
             errorViewStub.setVisibility(VISIBLE);
         }
+
         isError = true;
+    }
+
+    @Override
+    public void onPageStarted(WebView view, String url, Bitmap favicon) {
+        super.onPageStarted(view, url, favicon);
+        if (lastStatus && errorViewStub != null) {
+            errorViewStub.setVisibility(VISIBLE);
+        }
+        isError = false;
     }
 
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
-        if (!isError && errorViewStub != null)
+        if (!isError && errorViewStub != null) {
             errorViewStub.setVisibility(GONE);
+        }
+        lastStatus = isError;
     }
 
-
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+        return false;
+    }
+    
 }
