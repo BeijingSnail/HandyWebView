@@ -22,11 +22,33 @@
  CoreWebViewClient.setErrorViewLayout(@LayoutRes int errorLayout)
  
 ```
-###### 系统默认的错误页面
 
-![Image text](https://github.com/BeijingSnail/HeaderCarousel/blob/master/HeaderCarousel/images/ImageBanner.png)
+#### 可在项目中添加依赖
+1 Add it in your root build.gradle at the end of repositories:
+```
+allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
 
-###### 替换后的效果图
+2 Add the dependency
+```
+dependencies {
+	        compile 'com.github.BeijingSnail:HandyWebView:v1.0'
+	}
+```
+3 记得添加网络权限...
+```
+<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+```
+##### 系统默认的错误页面
 
-![Image text](https://github.com/BeijingSnail/HeaderCarousel/blob/master/HeaderCarousel/images/ImageBanner.png)
+![Image text](https://github.com/BeijingSnail/HandyWebView/blob/master/images/systemComes.png)
+
+##### 替换后的效果图
+
+![Image text](https://github.com/BeijingSnail/HandyWebView/blob/master/images/custom.png)
 
