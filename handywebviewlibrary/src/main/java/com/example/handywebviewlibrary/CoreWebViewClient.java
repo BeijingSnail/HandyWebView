@@ -2,7 +2,6 @@ package com.example.handywebviewlibrary;
 
 import android.graphics.Bitmap;
 import android.support.annotation.LayoutRes;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
@@ -18,17 +17,29 @@ import static android.view.View.VISIBLE;
 
 public class CoreWebViewClient extends WebViewClient {
 
-    private boolean isError = false;
-    private boolean lastStatus = false;
+    /**
+     * 本加载结束后是否是错误页面
+     */
+    private boolean isError;
+
+    /**
+     * 上一次加载结束后是否是错误页面
+     */
+    private boolean lastStatus;
+
+    /**
+     * 当前状态是否处于页面加载中
+     */
+    private boolean isLoading;
+
     private ViewStub errorViewStub;
+
     private int errorLayout = R.layout.error_layout;
 
     @SuppressWarnings("deprecation")
     @Override
     public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
         super.onReceivedError(view, errorCode, description, failingUrl);
-        Log.d("zzq", "CoreWebViewClient===>onReceivedError");
-        Log.d("zzq", "errorCode===>" + errorCode);
         showErrorPage(view);
     }
 
@@ -46,25 +57,19 @@ public class CoreWebViewClient extends WebViewClient {
     public void showErrorPage(final WebView webView) {
         if (errorViewStub == null) {
             errorViewStub = new ViewStub(webView.getContext());
-
-//            errorViewStub.setLayoutParams(new ViewGroup.LayoutParams(500, 500));
             errorViewStub.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             errorViewStub.setLayoutResource(errorLayout);
-
             errorViewStub.setClickable(true);
-//            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(errorViewStub.getLayoutParams());
-//            lp.setMargins(50, 50,50, 50);
-
-            webView.addView(errorViewStub);
+            webView.addView(errorViewStub, 0);
             View view = errorViewStub.inflate();
             view.findViewById(R.id.reload).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    webView.reload();
-
+                    if (!isLoading) {
+                        webView.reload();
+                    }
                 }
             });
-
         } else {
             errorViewStub.setVisibility(VISIBLE);
         }
@@ -78,6 +83,7 @@ public class CoreWebViewClient extends WebViewClient {
             errorViewStub.setVisibility(VISIBLE);
         }
         isError = false;
+        isLoading = true;
     }
 
     @Override
@@ -87,6 +93,7 @@ public class CoreWebViewClient extends WebViewClient {
             errorViewStub.setVisibility(GONE);
         }
         lastStatus = isError;
+        isLoading = false;
     }
 
 
