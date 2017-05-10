@@ -84,6 +84,7 @@ public class CoreWebViewClient extends WebViewClient {
         }
         isError = false;
         isLoading = true;
+        
     }
 
     @Override
