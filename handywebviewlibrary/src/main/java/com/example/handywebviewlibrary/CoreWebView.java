@@ -51,8 +51,8 @@ public class CoreWebView extends WebView {
             settings.setJavaScriptCanOpenWindowsAutomatically(true); //支持通过JS打开新窗口
             settings.setDefaultTextEncodingName("utf-8");//设置编码格式
 
-//        setWebViewClient(new CoreWebViewClient());
-            setWebChromeClient(new CoreChromeClient());
+            setWebViewClient(new CoreWebViewClient());
+//            setWebChromeClient(new CoreChromeClient());
 
             //解决在5.0以上不显示htts图片的问题
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
