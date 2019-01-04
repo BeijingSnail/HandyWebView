@@ -38,7 +38,7 @@ allprojects {
 2 Add the dependency
 ```
 dependencies {
-	       compile 'com.github.BeijingSnail:HandyWebView:v1.2'
+	       compile 'com.github.BeijingSnail:HandyWebView:1.2'
 	}
 ```
 3 记得添加网络权限...
